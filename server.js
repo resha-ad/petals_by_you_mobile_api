@@ -1,10 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-dotenv.config({ path: './config/config.env' });   // ← add this argument
+dotenv.config({ path: './config/config.env' });
 import cors from 'cors';
 import connectDB from './config/db.js';
 import errorHandler from './middleware/errorHandler.js';
 import authRoutes from './routes/auth_route.js';
+import path from 'path';
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.use(cors({
     origin: '*', // Change to specific origins in production
     credentials: true,
 }));
+
+app.use('/uploads/profile_pictures', express.static(path.join(process.cwd(), 'public/profile_pictures')));
 
 // Routes
 app.use('/api/v1', authRoutes);

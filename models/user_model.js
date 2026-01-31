@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         unique: true,
-        sparse: true, // Allows multiple null values
+        sparse: true,
         trim: true,
     },
     password: {
@@ -37,10 +37,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'default-profile.png',
     },
-    // Future fields (nullable)
-    address: String,
-    dateOfBirth: Date,
-    preferredDeliveryTime: String,
+    address: {
+        type: String,
+        required: false,
+    },
+    dateOfBirth: {
+        type: Date,
+        required: false,
+    },
+    preferredDeliveryTime: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
